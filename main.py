@@ -1,16 +1,21 @@
-# This is a sample Python script.
+from ClockInService import ClockInService
+from ClockInService import Browser
+from Share.ConfigTool import ConfigTool
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class Main:
+    def __init__(self):
+        self.__clockInService = ClockInService()
+        self.__Config = ConfigTool().get_config()
+        self.__URL =self.__Config["104Web"]["URL"]
+        self.__Username = self.__Config["104Web"]["Username"]
+        self.__Password = self.__Config["104Web"]["Password"]
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    def run(self):
+        self.__clockInService.SetWebdriver(Browser.Chrome)
+        self.__clockInService.Login(self.__URL,self.__Username,self.__Password)
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    main = Main()
+    main.run()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
