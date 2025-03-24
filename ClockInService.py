@@ -53,7 +53,7 @@ class ClockInService:
         self.__Password = Password
         # 定位帳號輸入框並輸入帳號
         self.__driver.get(self.__URL)
-        wait = WebDriverWait(self.__driver, 10)
+        wait = WebDriverWait(self.__driver, 100000)
         self.__LoginButton = wait.until(EC.element_to_be_clickable(self.__driver.find_element(By.CSS_SELECTOR, '[data-qa-id="loginButton"]')))
         self.__UserNameTextBox = self.__driver.find_element(By.CSS_SELECTOR, '[data-qa-id="loginUserName"]')
         self.__UserNameTextBox.send_keys(self.__UserName)
